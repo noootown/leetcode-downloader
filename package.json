@@ -1,0 +1,16 @@
+{
+  "name": "leetcode-downloader",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "noootown",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "cheerio": "^1.0.0-rc.2",
+    "underscore.string": "^3.3.5"
+  }
+}
