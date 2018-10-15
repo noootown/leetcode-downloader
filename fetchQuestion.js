@@ -5,6 +5,9 @@ const {
   request,
   parseXpath
 } = require('./utils')
+const {
+  SLEEP_TIME,
+} = require('./config')
 
 const dataPath = 'problem'
 
@@ -26,14 +29,17 @@ if (!fs.existsSync(dataPath)) {
 
   for (let problem of problems) {
     const { id, slug } = problem
-    console.log(`Downloading ${slug}`)
-    const { data } = await request({ url: `https://leetcode.com/problems/${slug}` })
     let idStr = numberPadZero(id, 4)
-    const problemText = parseXpath(data, 'head > meta[name="description"]', 'content')
     const filename = `${idStr}-${slug}.txt`
-    fs.writeFileSync(`${dataPath}/${filename}`, problemText)
+
+    console.log(`Downloading ${slug}`)
+
+    const { data: questionData } = await request({ url: `https://leetcode.com/problems/${slug}` })
+    const questionText = parseXpath(questionData, 'head > meta[name="description"]', 'content')
+    fs.writeFileSync(`${dataPath}/${filename}`, questionText)
+
     console.log(`Downloaded ${filename}`)
 
-    await sleep(5000)
+    await sleep(SLEEP_TIME)
   }
 })();

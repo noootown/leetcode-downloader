@@ -4,8 +4,11 @@ const {
   sleep,
   request,
 } = require('./utils')
+const {
+  SLEEP_TIME,
+} = require('./config')
 
-const extensionsMap = {
+const extMap = {
   bash: 'sh',
   c: 'c',
   cpp: 'cpp',
@@ -49,13 +52,13 @@ const solved = []
     })
     const acceptedSubmission = submissions_dump.filter(({ status_display }) => status_display === 'Accepted')
     if (acceptedSubmission.length === 0) {
-      await sleep(5000)
+      await sleep(SLEEP_TIME)
       continue
     }
 
     const { url, lang } = acceptedSubmission[0]
 
-    await sleep(5000)
+    await sleep(SLEEP_TIME)
 
     const { data: codeData } = await request({
       url: `https://leetcode.com${url}`,
@@ -67,10 +70,10 @@ const solved = []
       matches[1].replace(/\\u[\dA-F]{4}/gi, match =>
         String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16))
       )}\n`
-    const filename = `${idStr}-${slug}.${extensionsMap[lang]}`
+    const filename = `${idStr}-${slug}.${extMap[lang]}`
     fs.writeFileSync(`${dataPath}/${filename}`, code)
     console.log(`Downloaded ${filename}`)
 
-    await sleep(5000)
+    await sleep(SLEEP_TIME)
   }
 })()
