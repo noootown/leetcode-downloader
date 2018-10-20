@@ -2,6 +2,8 @@
 
 Download your accepted submissions and questions from LeetCode!
 
+This repo refers to [yangshun/leetcode-downloader](https://github.com/yangshun/leetcode-downloader).
+
 ## Start
 
 ```
@@ -21,7 +23,7 @@ Do the following steps to get your cookie at LeetCode
 # fetch the latest accepted submission of each question
 $ node fetchSubmission.js
 
-# fetch the description of each 
+# fetch the description of each question
 $ node fetchQuestion.js
 
 # merge questions and accepted submissions

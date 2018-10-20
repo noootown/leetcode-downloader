@@ -12,7 +12,9 @@ submissions.forEach(submission => {
   output += `
 Question ${submission[1]}:
 ${question}
+
 ${solution}
+--------------------------------------------
 
 `
 })
