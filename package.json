@@ -11,6 +11,8 @@
   "dependencies": {
     "axios": "^0.16.2",
     "cheerio": "^1.0.0-rc.2",
+    "prettier": "^1.19.1",
+    "prettier-plugin-java": "^0.6.0",
     "underscore.string": "^3.3.5"
   }
 }

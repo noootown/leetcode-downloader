@@ -42,11 +42,10 @@ const solved = []
       question_id: id,
       question__title_slug: slug,
     },
-  }) => ({ id, slug })).filter(({ id }) => solved.includes(id)).sort((a, b) => a.id - b.id)
+  }) => ({ id, slug })).sort((a, b) => a.id - b.id)
 
   for (let problem of problems) {
     const { id, slug } = problem
-    console.log(`Downloading ${slug}`)
     const { data: { submissions_dump } } = await request({
       url: `https://leetcode.com/api/submissions/${slug}`,
     })
@@ -55,7 +54,7 @@ const solved = []
       await sleep(SLEEP_TIME)
       continue
     }
-
+    console.log(`Downloading ${slug}`)
     const { url, lang } = acceptedSubmission[0]
 
     await sleep(SLEEP_TIME)
